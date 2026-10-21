@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Conquista Ética · Direito das Mídias Digitais</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Work+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#18202a;--mut:#5d6470;--a:#e4ebff;--ta:#1e3fa0;--b:#ffefd9;--tb:#a23e11;--c:#dff0e5;--tc:#14684a;--d:#dbf4ef;--td:#0b6670}
+*{box-sizing:border-box}
+body{margin:0;font-family:'Work Sans',system-ui,sans-serif;color:var(--ink);line-height:1.5;background:linear-gradient(135deg,#fff,#ebe5da);min-height:100vh}
+main{max-width:1040px;margin:0 auto;padding:28px 16px 56px}
+h1,h2{font-family:Fraunces,Georgia,serif;line-height:1.15;margin:.2em 0 .4em}
+h1{font-size:clamp(2rem,5vw,2.8rem)}
+.eye{font-size:.8rem;font-weight:700;color:#6b5f52}
+.lg{color:var(--mut)}
+.card{background:#fffdf8;border:1px solid #d9d2c3;border-radius:24px;padding:24px;margin-top:12px}
+.pf{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:14px 0}
+.pf button{font:inherit;text-align:left;border:2px solid transparent;border-radius:16px;padding:14px;cursor:pointer}
+.pf button:hover,.pf button:focus-visible{border-color:currentColor}
+.k0{background:var(--a);color:var(--ta)}.k1{background:var(--b);color:var(--tb)}.k2{background:var(--c);color:var(--tc)}.k3{background:var(--d);color:var(--td)}
+.btn{background:var(--ink);color:#fff;border:0;border-radius:12px;padding:12px 22px;font:700 1rem 'Work Sans',sans-serif;cursor:pointer;margin-top:8px}
+.top{display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between}
+.bar{height:10px;background:#e5dfd2;border-radius:9px;overflow:hidden;margin-top:4px}
+.bar i{display:block;height:100%;transition:width .4s}
+.map{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.rh{font-weight:700;font-size:.8rem;border-radius:10px;padding:6px 8px}
+.cell{font:inherit;font-size:.85rem;text-align:left;min-height:88px;border:2px solid transparent;border-radius:14px;padding:10px;cursor:default}
+.cell b{display:block}
+.cell small{opacity:.85}
+.cell.p{border-color:var(--ink);box-shadow:inset 0 0 0 2px var(--ink)}
+.cell.r{border:2px dashed #b3261e}
+.cell.go{cursor:pointer;outline:3px solid #f2b705;animation:pl 1.4s infinite}
+@keyframes pl{50%{outline-color:transparent}}
+.opt{display:block;width:100%;text-align:left;background:#fff;border:1.5px solid #d9d2c3;border-radius:12px;padding:12px;margin:8px 0;font:inherit;cursor:pointer}
+.opt:hover,.opt:focus-visible{border-color:var(--ink)}
+.res{padding:12px 14px;border-radius:12px;margin:10px 0}
+.g2{background:#dff0e5}.g1{background:#fff2cf}.g0{background:#fde2df}
+@media(max-width:640px){.map{gap:5px}.cell{min-height:80px;font-size:.72rem;padding:7px}.card{padding:16px}}
+@media(prefers-reduced-motion:reduce){.cell.go{animation:none}}
+.back{display:inline-block;margin:16px 0 0 16px;color:var(--ink);font-weight:600;text-decoration:none}
+</style>
+</head>
+<body>
+<a class="back" href="index.html">‹ Voltar aos jogos</a>
+<main id="app"></main>
+<script>
+const R=[['Planalto do Dever','❄️','Guardião do Dever','Kant'],['Costa da Honra','✦','Maximizador do Bem','Bentham e Mill'],['Vale Virtuoso','⚖️','Prático Virtuoso','Aristóteles'],['Praça do Consenso','✳️','Construtor de Consenso','Habermas']];
+/* Cada caso: [território, cenário, [[opção, resultado]], explicação]. Resultado: 2 = legal e ético, 1 = discutível, 0 = ilegal ou antiético */
+const CS=[
+[['Cordilheira da Legítima Defesa','Um menor entra no seu terreno para pegar frutas. O que você faz?',[['Afasta com firmeza e, se preciso, chama a polícia.',2],['Finge que não viu e não toma providência.',1],['Atira para impedir o furto.',0]],'A legítima defesa exige reação moderada. Matar um menor por furto de frutas é o exemplo de imoderação visto em aula.'],
+['Vale da Omissão','Você é guia de uma trilha e um participante se machuca. E agora?',[['Para o grupo, socorre e aciona o resgate.',2],['Socorre, mas esconde da organização o que houve.',1],['Segue o roteiro: “resolvemos no fim”.',0]],'Quem tem o dever de vigiar (o garante) responde por omissão. A omissão de socorro também é crime.'],
+['Ilha do Dolo Eventual','Você bebeu e amigos propõem um racha com o seu carro.',[['Recusa e pede um carro de aplicativo.',2],['Recusa o racha, mas dirige até em casa.',1],['Topa: “só dessa vez”.',0]],'No dolo eventual, o agente assume o risco do resultado. Embriagado, entrar em um racha é assumir o risco de matar.']],
+[['Baía da Calúnia','Circula um post dizendo, sem provas, que um motorista “trabalha com coisa ilícita”.',[['Não compartilha e pede ao autor que apague.',2],['Compartilha com “não sei se é verdade, mas olha”.',1],['Compartilha afirmando que é verdade.',0]],'Calúnia é imputar falsamente um fato definido como crime (art. 138 do CP). Quem, sabendo que é falso, divulga a imputação incorre na mesma pena.'],
+['Enseada da Imagem','Você filmou um colega em um momento constrangedor e quer postar “de brincadeira”.',[['Pede autorização e respeita se ele disser não.',2],['Posta cortando o rosto dele.',1],['Posta e marca o colega.',0]],'Imagem e privacidade são direitos de personalidade. Pelo art. 186 do CC, até o dano exclusivamente moral é ato ilícito, e o art. 927 obriga a reparar.'],
+['Praia da Notícia','Seu portal vai noticiar a prisão de uma pessoa suspeita de crime.',[['Relata só os fatos, diz “suspeita” e respeita a presunção de inocência.',2],['Desiste de publicar, mesmo havendo interesse público.',1],['Publica chamando a pessoa de criminosa.',0]],'Noticiar a prisão por suspeita não é ato ilícito se a matéria respeita os limites do fato, a presunção de inocência e o interesse público.']],
+[['Bosque da Coação','Seu chefe manda publicar uma acusação falsa contra um concorrente: “ordem é ordem”.',[['Recusa cumprir a ordem.',2],['Pede mais prazo, sem recusar nem cumprir.',1],['Cumpre a ordem.',0]],'A obediência hierárquica só afasta a culpa quando a ordem não é manifestamente ilegal. Se for ilegal, deve-se recusar.'],
+['Planície do Dever','O grupo propõe inventar dados em uma pesquisa “só para tirar nota”.',[['Diz que não e propõe coletar dados reais.',2],['Omite os pontos fracos, sem inventar nada.',1],['Inventa os dados.',0]],'Para Kant, agir por dever, como dizer a verdade, deve valer como lei universal, sejam quais forem as consequências.'],
+['Colina da Pós-verdade','Uma notícia chocante, sem fonte, confirma exatamente o que você pensa.',[['Confere a fonte e a apuração antes de compartilhar.',2],['Compartilha com a ressalva “não confirmado”.',1],['Compartilha: “é a minha opinião”.',0]],'Na pós-verdade, a “minha opinião” vale mais que os fatos. A apuração é o que reduz o dano das fake news.']],
+[['Torre do Estado','Roubaram seu celular e você descobre onde está o ladrão.',[['Registra ocorrência e aciona a polícia.',2],['Vai sozinho(a) pedir o celular de volta, sem violência.',1],['Reúne amigos para “resolver na marra”.',0]],'Para Weber, o Estado detém o monopólio da violência. Ao cidadão não é permitido usá-la para reparar direitos lesados (vingança).'],
+['Templo de Antígona','Você gere uma equipe e percebe que uma regra, aplicada à risca, pune alguém injustamente.',[['Admite o erro e corrige a regra pelos meios formais.',2],['Ignora a regra em silêncio, sem registrar.',1],['Aplica mesmo assim: “a regra é a regra”.',0]],'Creonte usa a letra da lei em benefício próprio. Tirésias avisa: quem erra e remedia não é insensato, e a intransigência leva à estupidez.'],
+['Laboratório Pós-Humano','Sua startup lança uma tecnologia de “melhoramento humano”.',[['Planeja acesso amplo e abre o debate público.',2],['Vende só a quem pode pagar: “é o livre mercado”.',1],['Vende como “milagre”, sem informar os limites.',0]],'O transumanismo democrático exige acesso igual, para a tecnologia não virar privilégio de classe. Superestimá-la leva ao tecnorreducionismo.']]
+];
+const $=document.getElementById('app'),rnd=n=>Math.random()*n|0,shuf=a=>a.map(x=>[Math.random(),x]).sort((x,y)=>x[0]-y[0]).map(x=>x[1]);
+const ALL=[...Array(12).keys()],cs=i=>CS[i%4][i/4|0];
+let S;
+const adj=i=>{const c=i%4,r=i/4|0,a=[];if(r>0)a.push(i-4);if(r<2)a.push(i+4);if(c>0)a.push(i-1);if(c<3)a.push(i+1);return a};
+const cnt=v=>S.o.filter(x=>x==v).length;
+const own=v=>ALL.filter(i=>S.o[i]==v);
+const elig=i=>S.o[i]!=1&&!S.tried.includes(i)&&adj(i).some(j=>S.o[j]==1);
+
+function intro(){
+$.innerHTML=`<div class="eye">Ética aplicada · Direito das Mídias Digitais</div><h1>Conquista Ética</h1>
+<p class="lg">Um jogo inspirado em War, feito com os conteúdos da aula de Legislação.</p>
+<div class="card"><h2>Como jogar</h2>
+<p>O mapa tem 12 territórios em 4 regiões. A cada rodada, ataque um território vizinho dos seus resolvendo um caso jurídico. Decisão legal e ética conquista o território. Decisão discutível custa ética e, contra o Rival, exige um dado de 4 ou mais. Decisão ilegal ou antiética gera sanção e você perde um território.</p>
+<p>Depois de 10 rodadas, vence quem tiver mais terras, mas a vitória só vale com ética de 50 ou mais.</p>
+<h2>Escolha seu perfil</h2>
+<div class="pf">${R.map((r,k)=>`<button class="k${k}" onclick="start(${k})"><span style="font-size:1.6rem">${r[1]}</span><br><b>${r[2]}</b><br><small>${r[3]}. Na região ${r[0]}, decisões discutíveis não custam ética.</small></button>`).join('')}</div>
+<p class="lg">Conteúdo educacional baseado nos materiais da aula; não substitui orientação jurídica profissional. Nada é enviado ou guardado.</p></div>`}
+
+function start(k){S={k,e:70,o:Array(12).fill(0),r:1,tried:[],log:[]};S.o[0]=S.o[4]=1;S.o[3]=S.o[7]=2;board()}
+
+function hd(){return `<div class="top"><div><div class="eye">Rodada ${Math.min(S.r,10)} de 10</div><b>${R[S.k][2]}</b></div><div>Você <b>${cnt(1)}</b> × <b>${cnt(2)}</b> Rival</div><div style="min-width:210px">Ética: ${S.e}/100 (mínimo 50)<div class="bar"><i style="width:${S.e}%;background:${S.e>=50?'#14684a':'#b3261e'}"></i></div></div></div>`}
+
+function cell(i){const o=S.o[i],g=elig(i);
+return `<button class="cell k${i%4} ${o==1?'p':o==2?'r':''} ${g?'go':''}" ${g?`onclick="play(${i})"`:'disabled'}><b>${cs(i)[0]}</b><small>${o==1?'🏳️ Seu':o==2?'⚔️ Rival':S.tried.includes(i)?'🔒 Bloqueado':'Livre'}</small></button>`}
+
+function board(){
+if(S.r>10||!cnt(1)||!ALL.some(elig))return end();
+$.innerHTML=hd()+`<div class="card"><p class="lg">Escolha um território <b>destacado</b>, vizinho dos seus, para atacar.</p><div class="map">${R.map((r,k)=>`<div class="rh k${k}">${r[1]} ${r[0]}</div>`).join('')}${ALL.map(cell).join('')}</div></div>`}
+
+function play(i){const c=cs(i);
+$.innerHTML=hd()+`<div class="card"><div class="eye">${R[i%4][0]}</div><h2>${c[0]}</h2><p>${c[1]}</p>${shuf(c[2]).map(x=>`<button class="opt" onclick="ans(${i},${x[1]})">${x[0]}</button>`).join('')}</div>`}
+
+function ans(i,q){const c=cs(i),h=i%4==S.k;let d=0,w=q>0,t='';
+if(q==2){S.e=Math.min(100,S.e+5);t='Decisão legal e ética: território conquistado! (+5 de ética)'}
+else if(q==1){if(S.o[i]==2){d=1+rnd(6);w=d>=4}
+t=(w?'Decisão discutível: você conquistou o território, mas com custo.':'Decisão discutível e o dado não ajudou: o Rival segurou o território.')+(h?' Na sua região, o seu perfil não paga o custo de ética.':' (−8 de ética)');if(!h)S.e-=8}
+else{S.e-=20;t='Decisão ilegal ou antiética: sanção! (−20 de ética)';const m=own(1);if(m.length>1){const l=m[rnd(m.length)];S.o[l]=0;t+=` Você perdeu ${cs(l)[0]}.`}}
+S.e=Math.max(0,S.e);if(w)S.o[i]=1;S.tried.push(i);S.log.push([c[0],q]);
+$.innerHTML=hd()+`<div class="card"><h2>${c[0]}</h2><div class="res g${q}"><b>${t}</b>${d?`<br>🎲 Dado: ${d}`:''}</div><p>${c[3]}</p><button class="btn" onclick="rival()">Vez do Rival</button></div>`}
+
+function rival(){let t='O Rival não tem território para atacar.';
+const rs=ALL.filter(i=>S.o[i]!=2&&adj(i).some(j=>S.o[j]==2));
+if(rs.length){const i=rs[rnd(rs.length)],c=cs(i),r=Math.random(),q=r<.5?2:r<.75?1:0,x=c[2].find(z=>z[1]==q),v=S.o[i]==1;let w=q>0;
+t=`O Rival atacou <b>${c[0]}</b> e escolheu: “${x[0]}” `;
+if(q==1&&v){const d=1+rnd(6);w=d>=4;t+=`(dado do Rival: ${d}). `}
+if(q==0){t+='Foi decisão ilegal ou antiética: sanção! ';const m=own(2);if(m.length>1){const l=m[rnd(m.length)];S.o[l]=0;t+=`O Rival perdeu ${cs(l)[0]}. `}t+=c[3]}
+else if(w){S.o[i]=2;t+=v?'Ele tomou esse território de você!':'Ele conquistou o território.'}
+else t+='Mas não conseguiu conquistar.'}
+$.innerHTML=hd()+`<div class="card"><h2>Vez do Rival</h2><p>${t}</p><button class="btn" onclick="S.r++;board()">Próxima rodada</button></div>`}
+
+function end(){const p=cnt(1),r=cnt(2),ok=S.e>=50,L=['Ilegal ou antiética','Discutível','Legal e ética'];
+const h=p>r?(ok?'Vitória ética! 🏆':'Vitória vazia'):p==r?'Empate':'O Rival dominou o mapa';
+const m=p>r?(ok?'Você conquistou mais terras e manteve a ética acima do mínimo.':'Você tem mais terras, mas a ética ficou abaixo de 50. Conquistar sem seguir a lei e a ética não vale.'):'Revise suas decisões abaixo e tente de novo.';
+$.innerHTML=hd()+`<div class="card"><h2>${h}</h2><p>${m}</p><p>Territórios: você ${p} × ${r} Rival. Ética final: ${S.e}.</p><p class="eye">Suas decisões</p>${S.log.map(l=>`<div class="res g${l[1]}"><b>${l[0]}</b>: ${L[l[1]]}</div>`).join('')}<button class="btn" onclick="intro()">Jogar de novo</button></div>`}
+
+intro();
+</script>
+</body>
+</html>
