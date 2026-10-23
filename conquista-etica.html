@@ -40,6 +40,12 @@ h1{font-size:clamp(2rem,5vw,2.8rem)}
 @media(max-width:640px){.map{gap:5px}.cell{min-height:80px;font-size:.72rem;padding:7px}.card{padding:16px}}
 @media(prefers-reduced-motion:reduce){.cell.go{animation:none}}
 .back{display:inline-block;margin:16px 0 0 16px;color:var(--ink);font-weight:600;text-decoration:none}
+.reino{display:block;width:100%;border-radius:14px;margin:10px 0 4px}
+.gal{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin:10px 0 18px}
+.gal figure{margin:0}
+.gal img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:12px}
+.gal figcaption{font-size:.85rem;margin-top:4px}
+.gal .off img{filter:grayscale(1);opacity:.4}
 </style>
 </head>
 <body>
@@ -63,6 +69,7 @@ const CS=[
 ['Laboratório Pós-Humano','Sua startup lança uma tecnologia de “melhoramento humano”.',[['Planeja acesso amplo e abre o debate público.',2],['Vende só a quem pode pagar: “é o livre mercado”.',1],['Vende como “milagre”, sem informar os limites.',0]],'O transumanismo democrático exige acesso igual, para a tecnologia não virar privilégio de classe. Superestimá-la leva ao tecnorreducionismo.']]
 ];
 const $=document.getElementById('app'),rnd=n=>Math.random()*n|0,shuf=a=>a.map(x=>[Math.random(),x]).sort((x,y)=>x[0]-y[0]).map(x=>x[1]);
+const IMG=['dever','honra','virtuoso','consenso'];
 const ALL=[...Array(12).keys()],cs=i=>CS[i%4][i/4|0];
 let S;
 const adj=i=>{const c=i%4,r=i/4|0,a=[];if(r>0)a.push(i-4);if(r<2)a.push(i+4);if(c>0)a.push(i-1);if(c<3)a.push(i+1);return a};
@@ -94,13 +101,14 @@ $.innerHTML=hd()+`<div class="card"><p class="lg">Escolha um território <b>dest
 function play(i){const c=cs(i);
 $.innerHTML=hd()+`<div class="card"><div class="eye">${R[i%4][0]}</div><h2>${c[0]}</h2><p>${c[1]}</p>${shuf(c[2]).map(x=>`<button class="opt" onclick="ans(${i},${x[1]})">${x[0]}</button>`).join('')}</div>`}
 
+function reinoImg(i){const k=i%4,n=ALL.filter(j=>j%4==k&&S.o[j]==1).length;return `<img class="reino" src="imagens/reino-${IMG[k]}.jpg" alt="Reino ${R[k][0]}"><p><b>${n==3?'🏰 Reino dominado: ':'Território conquistado em '}${R[k][0]}</b> (${n}/3 territórios)</p>`}
 function ans(i,q){const c=cs(i),h=i%4==S.k;let d=0,w=q>0,t='';
 if(q==2){S.e=Math.min(100,S.e+5);t='Decisão legal e ética: território conquistado! (+5 de ética)'}
 else if(q==1){if(S.o[i]==2){d=1+rnd(6);w=d>=4}
 t=(w?'Decisão discutível: você conquistou o território, mas com custo.':'Decisão discutível e o dado não ajudou: o Rival segurou o território.')+(h?' Na sua região, o seu perfil não paga o custo de ética.':' (−8 de ética)');if(!h)S.e-=8}
 else{S.e-=20;t='Decisão ilegal ou antiética: sanção! (−20 de ética)';const m=own(1);if(m.length>1){const l=m[rnd(m.length)];S.o[l]=0;t+=` Você perdeu ${cs(l)[0]}.`}}
 S.e=Math.max(0,S.e);if(w)S.o[i]=1;S.tried.push(i);S.log.push([c[0],q]);
-$.innerHTML=hd()+`<div class="card"><h2>${c[0]}</h2><div class="res g${q}"><b>${t}</b>${d?`<br>🎲 Dado: ${d}`:''}</div><p>${c[3]}</p><button class="btn" onclick="rival()">Vez do Rival</button></div>`}
+$.innerHTML=hd()+`<div class="card"><h2>${c[0]}</h2><div class="res g${q}"><b>${t}</b>${d?`<br>🎲 Dado: ${d}`:''}</div>${w?reinoImg(i):''}<p>${c[3]}</p><button class="btn" onclick="rival()">Vez do Rival</button></div>`}
 
 function rival(){let t='O Rival não tem território para atacar.';
 const rs=ALL.filter(i=>S.o[i]!=2&&adj(i).some(j=>S.o[j]==2));
@@ -115,7 +123,7 @@ $.innerHTML=hd()+`<div class="card"><h2>Vez do Rival</h2><p>${t}</p><button clas
 function end(){const p=cnt(1),r=cnt(2),ok=S.e>=50,L=['Ilegal ou antiética','Discutível','Legal e ética'];
 const h=p>r?(ok?'Vitória ética! 🏆':'Vitória vazia'):p==r?'Empate':'O Rival dominou o mapa';
 const m=p>r?(ok?'Você conquistou mais terras e manteve a ética acima do mínimo.':'Você tem mais terras, mas a ética ficou abaixo de 50. Conquistar sem seguir a lei e a ética não vale.'):'Revise suas decisões abaixo e tente de novo.';
-$.innerHTML=hd()+`<div class="card"><h2>${h}</h2><p>${m}</p><p>Territórios: você ${p} × ${r} Rival. Ética final: ${S.e}.</p><p class="eye">Suas decisões</p>${S.log.map(l=>`<div class="res g${l[1]}"><b>${l[0]}</b>: ${L[l[1]]}</div>`).join('')}<button class="btn" onclick="intro()">Jogar de novo</button></div>`}
+$.innerHTML=hd()+`<div class="card"><h2>${h}</h2><p>${m}</p><p>Territórios: você ${p} × ${r} Rival. Ética final: ${S.e}.</p><p class="eye">Seus reinos</p><div class="gal">${R.map((r,k)=>{const n=ALL.filter(j=>j%4==k&&S.o[j]==1).length;return `<figure class="${n?'':'off'}"><img src="imagens/reino-${IMG[k]}.jpg" alt="${r[0]}"><figcaption><b>${r[0]}</b>: ${n}/3${n==3?' 🏰 dominado':''}</figcaption></figure>`}).join('')}</div><p class="eye">Suas decisões</p>${S.log.map(l=>`<div class="res g${l[1]}"><b>${l[0]}</b>: ${L[l[1]]}</div>`).join('')}<button class="btn" onclick="intro()">Jogar de novo</button></div>`}
 
 intro();
 </script>

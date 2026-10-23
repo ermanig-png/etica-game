@@ -22,8 +22,8 @@ h1{font-size:clamp(2.2rem,6vw,3.6rem);max-width:14em}
 .game h2{font-size:1.7rem}
 .game p{margin:0;color:var(--mut)}
 .go{margin-top:auto;align-self:flex-start;background:var(--ink);color:#fff;border-radius:12px;padding:12px 22px;font-weight:700}
-.art{border-radius:16px;overflow:hidden;aspect-ratio:5/4;background:#f3efe6}
-.art svg{display:block;width:100%;height:100%}
+.art{border-radius:16px;overflow:hidden;aspect-ratio:16/9;background:#f3efe6}
+.art img{display:block;width:100%;height:100%;object-fit:cover}
 .k0{background:var(--a);color:var(--ta)}.k1{background:var(--b);color:var(--tb)}.k2{background:var(--c);color:var(--tc)}.k3{background:var(--d);color:var(--td)}
 footer{margin-top:32px;color:var(--mut);font-size:.85rem;max-width:44em}
 @media(prefers-reduced-motion:reduce){.game{transition:none}}
@@ -38,26 +38,14 @@ footer{margin-top:32px;color:var(--mut);font-size:.85rem;max-width:44em}
 <div class="games">
 <!-- Troque o endereço abaixo pelo link do teste no Canva -->
 <a class="game" href="https://eticaminhaetica.my.canva.site/" target="_blank" rel="noopener">
-<div class="art"><svg viewBox="0 0 400 320" role="img" aria-label="Bússola com quatro pontas, uma para cada perfil moral">
-<rect width="400" height="320" fill="#f3efe6"/>
-<defs><g id="kt"><polygon points="200,38 224,160 176,160" fill="currentColor"/><polygon points="200,38 224,160 200,160" fill="#000" opacity=".16"/></g></defs>
-<circle cx="200" cy="160" r="143" fill="none" stroke="#b9b09e" stroke-width="3" stroke-dasharray="1.5 9"/>
-<circle cx="200" cy="160" r="126" fill="#fffdf8" stroke="#18202a" stroke-width="3"/>
-<use href="#kt" color="#3c63d6"/><use href="#kt" color="#e8873a" transform="rotate(90 200 160)"/><use href="#kt" color="#3f9a6a" transform="rotate(180 200 160)"/><use href="#kt" color="#2aa8a0" transform="rotate(270 200 160)"/>
-<circle cx="200" cy="160" r="15" fill="#18202a"/><circle cx="200" cy="160" r="6" fill="#d9c28a"/>
-</svg></div>
+<div class="art"><img src="imagens/capa-bussola.jpg" alt="Os quatro guardiões dos perfis morais diante de uma grande bússola de pedra" loading="lazy"></div>
 <h2>Bússola Moral</h2>
 <p>Responda 36 afirmações e descubra seu perfil: Guardião do Dever, Maximizador do Bem, Prático Virtuoso ou Construtor de Consenso.</p>
 <span class="go">Fazer o teste</span>
 </a>
 
 <a class="game" href="conquista-etica.html">
-<div class="art"><svg viewBox="0 0 400 320" role="img" aria-label="Tabuleiro com territórios, bandeiras, uma balança da justiça e um dado">
-<rect width="400" height="320" fill="#f3efe6"/><rect x="24" y="34" width="82" height="62" rx="12" fill="#e4ebff" stroke="#18202a" stroke-width="3"/><line x1="40" y1="48" x2="40" y2="80" stroke="#18202a" stroke-width="3"/><polygon points="40,48 64,57 40,66" fill="#18202a"/><rect x="24" y="104" width="82" height="62" rx="12" fill="#e4ebff" stroke="#18202a" stroke-width="3"/><line x1="40" y1="118" x2="40" y2="150" stroke="#18202a" stroke-width="3"/><polygon points="40,118 64,127 40,136" fill="#18202a"/><rect x="24" y="174" width="82" height="62" rx="12" fill="#e4ebff" stroke="#1e3fa0" stroke-width="1.5"/><rect x="114" y="34" width="82" height="62" rx="12" fill="#ffefd9" stroke="#a23e11" stroke-width="1.5"/><rect x="114" y="104" width="82" height="62" rx="12" fill="#ffefd9" stroke="#a23e11" stroke-width="1.5"/><rect x="114" y="174" width="82" height="62" rx="12" fill="#ffefd9" stroke="#a23e11" stroke-width="1.5"/><rect x="204" y="34" width="82" height="62" rx="12" fill="#dff0e5" stroke="#14684a" stroke-width="1.5"/><rect x="204" y="104" width="82" height="62" rx="12" fill="#dff0e5" stroke="#14684a" stroke-width="1.5"/><rect x="204" y="174" width="82" height="62" rx="12" fill="#dff0e5" stroke="#14684a" stroke-width="1.5"/><rect x="294" y="34" width="82" height="62" rx="12" fill="#dbf4ef" stroke="#b3261e" stroke-width="3" stroke-dasharray="6 4"/><line x1="310" y1="48" x2="310" y2="80" stroke="#18202a" stroke-width="3"/><polygon points="310,48 334,57 310,66" fill="#b3261e"/><rect x="294" y="104" width="82" height="62" rx="12" fill="#dbf4ef" stroke="#b3261e" stroke-width="3" stroke-dasharray="6 4"/><line x1="310" y1="118" x2="310" y2="150" stroke="#18202a" stroke-width="3"/><polygon points="310,118 334,127 310,136" fill="#b3261e"/><rect x="294" y="174" width="82" height="62" rx="12" fill="#dbf4ef" stroke="#0b6670" stroke-width="1.5"/>
-<g stroke="#18202a" stroke-width="3" stroke-linecap="round"><line x1="48" y1="302" x2="92" y2="302"/><line x1="70" y1="258" x2="70" y2="302"/><line x1="38" y1="266" x2="102" y2="266"/></g>
-<path d="M38 266 L27 288 H49 Z M102 266 L91 288 H113 Z" fill="#c9a85c" stroke="#18202a" stroke-width="2.5" stroke-linejoin="round"/>
-<g transform="rotate(12 330 275)"><rect x="306" y="251" width="48" height="48" rx="10" fill="#fff" stroke="#18202a" stroke-width="3"/><circle cx="318" cy="263" r="4.5" fill="#18202a"/><circle cx="342" cy="263" r="4.5" fill="#18202a"/><circle cx="330" cy="275" r="4.5" fill="#18202a"/><circle cx="318" cy="287" r="4.5" fill="#18202a"/><circle cx="342" cy="287" r="4.5" fill="#18202a"/></g>
-</svg></div>
+<div class="art"><img src="imagens/capa-conquista.jpg" alt="Mapa dos quatro reinos do jogo Conquista Ética" loading="lazy"></div>
 <h2>Conquista Ética</h2>
 <p>Um jogo de tabuleiro inspirado em War. Conquiste territórios resolvendo casos jurídicos, sem cometer crimes e sem perder a ética.</p>
 <span class="go">Jogar agora</span>
