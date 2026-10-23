@@ -101,7 +101,7 @@ $.innerHTML=hd()+`<div class="card"><p class="lg">Escolha um território <b>dest
 function play(i){const c=cs(i);
 $.innerHTML=hd()+`<div class="card"><div class="eye">${R[i%4][0]}</div><h2>${c[0]}</h2><p>${c[1]}</p>${shuf(c[2]).map(x=>`<button class="opt" onclick="ans(${i},${x[1]})">${x[0]}</button>`).join('')}</div>`}
 
-function reinoImg(i){const k=i%4,n=ALL.filter(j=>j%4==k&&S.o[j]==1).length;return `<img class="reino" src="imagens/reino-${IMG[k]}.jpg" alt="Reino ${R[k][0]}"><p><b>${n==3?'🏰 Reino dominado: ':'Território conquistado em '}${R[k][0]}</b> (${n}/3 territórios)</p>`}
+function reinoImg(i){const k=i%4,n=ALL.filter(j=>j%4==k&&S.o[j]==1).length;return `<img class="reino" src="reino-${IMG[k]}.jpg" alt="Reino ${R[k][0]}"><p><b>${n==3?'🏰 Reino dominado: ':'Território conquistado em '}${R[k][0]}</b> (${n}/3 territórios)</p>`}
 function ans(i,q){const c=cs(i),h=i%4==S.k;let d=0,w=q>0,t='';
 if(q==2){S.e=Math.min(100,S.e+5);t='Decisão legal e ética: território conquistado! (+5 de ética)'}
 else if(q==1){if(S.o[i]==2){d=1+rnd(6);w=d>=4}
@@ -123,7 +123,7 @@ $.innerHTML=hd()+`<div class="card"><h2>Vez do Rival</h2><p>${t}</p><button clas
 function end(){const p=cnt(1),r=cnt(2),ok=S.e>=50,L=['Ilegal ou antiética','Discutível','Legal e ética'];
 const h=p>r?(ok?'Vitória ética! 🏆':'Vitória vazia'):p==r?'Empate':'O Rival dominou o mapa';
 const m=p>r?(ok?'Você conquistou mais terras e manteve a ética acima do mínimo.':'Você tem mais terras, mas a ética ficou abaixo de 50. Conquistar sem seguir a lei e a ética não vale.'):'Revise suas decisões abaixo e tente de novo.';
-$.innerHTML=hd()+`<div class="card"><h2>${h}</h2><p>${m}</p><p>Territórios: você ${p} × ${r} Rival. Ética final: ${S.e}.</p><p class="eye">Seus reinos</p><div class="gal">${R.map((r,k)=>{const n=ALL.filter(j=>j%4==k&&S.o[j]==1).length;return `<figure class="${n?'':'off'}"><img src="imagens/reino-${IMG[k]}.jpg" alt="${r[0]}"><figcaption><b>${r[0]}</b>: ${n}/3${n==3?' 🏰 dominado':''}</figcaption></figure>`}).join('')}</div><p class="eye">Suas decisões</p>${S.log.map(l=>`<div class="res g${l[1]}"><b>${l[0]}</b>: ${L[l[1]]}</div>`).join('')}<button class="btn" onclick="intro()">Jogar de novo</button></div>`}
+$.innerHTML=hd()+`<div class="card"><h2>${h}</h2><p>${m}</p><p>Territórios: você ${p} × ${r} Rival. Ética final: ${S.e}.</p><p class="eye">Seus reinos</p><div class="gal">${R.map((r,k)=>{const n=ALL.filter(j=>j%4==k&&S.o[j]==1).length;return `<figure class="${n?'':'off'}"><img src="reino-${IMG[k]}.jpg" alt="${r[0]}"><figcaption><b>${r[0]}</b>: ${n}/3${n==3?' 🏰 dominado':''}</figcaption></figure>`}).join('')}</div><p class="eye">Suas decisões</p>${S.log.map(l=>`<div class="res g${l[1]}"><b>${l[0]}</b>: ${L[l[1]]}</div>`).join('')}<button class="btn" onclick="intro()">Jogar de novo</button></div>`}
 
 intro();
 </script>
