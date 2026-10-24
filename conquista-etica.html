@@ -101,6 +101,28 @@ $.innerHTML=hd()+`<div class="card"><p class="lg">Escolha um território <b>dest
 function play(i){const c=cs(i);
 $.innerHTML=hd()+`<div class="card"><div class="eye">${R[i%4][0]}</div><h2>${c[0]}</h2><p>${c[1]}</p>${shuf(c[2]).map(x=>`<button class="opt" onclick="ans(${i},${x[1]})">${x[0]}</button>`).join('')}</div>`}
 
+var SANC=`<svg class="reino" viewBox="0 0 960 540" role="img" aria-label="Martelo da justiça rachando o chão sob um céu de tempestade, com a faixa Sanção">
+<defs><linearGradient id="sk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#241632"/><stop offset=".55" stop-color="#7b2c3c"/><stop offset="1" stop-color="#e2763b"/></linearGradient>
+<linearGradient id="gd" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4d67e"/><stop offset="1" stop-color="#b8892f"/></linearGradient>
+<radialGradient id="gl"><stop offset="0" stop-color="#ffe9a8" stop-opacity=".95"/><stop offset="1" stop-color="#ffe9a8" stop-opacity="0"/></radialGradient>
+<filter id="bl"><feGaussianBlur stdDeviation="7"/></filter></defs>
+<rect width="960" height="540" fill="url(#sk)"/>
+<g fill="#1a0f26" opacity=".55"><ellipse cx="170" cy="90" rx="230" ry="46"/><ellipse cx="520" cy="62" rx="280" ry="40"/><ellipse cx="850" cy="120" rx="200" ry="50"/></g>
+<polygon points="640,0 590,150 640,150 580,290 700,120 645,120 690,0" fill="#fff3b8" opacity=".7" filter="url(#bl)"/>
+<polygon points="640,0 590,150 640,150 580,290 700,120 645,120 690,0" fill="#fff6c8"/>
+<g fill="#1b1022"><polygon points="700,300 890,300 795,235"/><rect x="708" y="300" width="174" height="14"/><rect x="716" y="314" width="16" height="100"/><rect x="748" y="314" width="16" height="100"/><rect x="780" y="314" width="16" height="100"/><rect x="812" y="314" width="16" height="100"/><rect x="844" y="314" width="16" height="100"/><rect x="703" y="414" width="190" height="18"/></g>
+<polygon points="0,440 960,440 960,540 0,540" fill="#2a1a2e"/><rect y="438" width="960" height="5" fill="#4a2f45"/>
+<ellipse cx="90" cy="34" rx="13" ry="19" fill="none" stroke="#c4c8d0" stroke-width="5"/><ellipse cx="90" cy="72" rx="5" ry="19" fill="none" stroke="#c4c8d0" stroke-width="5"/><ellipse cx="90" cy="110" rx="13" ry="19" fill="none" stroke="#c4c8d0" stroke-width="5"/><ellipse cx="90" cy="148" rx="5" ry="19" fill="none" stroke="#c4c8d0" stroke-width="5"/><ellipse cx="90" cy="186" rx="13" ry="19" fill="none" stroke="#c4c8d0" stroke-width="5"/><ellipse cx="90" cy="224" rx="5" ry="19" fill="none" stroke="#c4c8d0" stroke-width="5"/><ellipse cx="90" cy="262" rx="13" ry="19" fill="none" stroke="#c4c8d0" stroke-width="5"/><ellipse cx="90" cy="300" rx="5" ry="19" fill="none" stroke="#c4c8d0" stroke-width="5"/>
+<circle cx="335" cy="440" r="150" fill="url(#gl)"/>
+<polyline points="335,474 300,500 250,512 190,540" fill="none" stroke="#ff9a3c" stroke-width="3" stroke-linecap="round"/><polyline points="335,474 380,505 440,520 500,540" fill="none" stroke="#ff9a3c" stroke-width="3" stroke-linecap="round"/><polyline points="335,474 335,512 320,540" fill="none" stroke="#ff9a3c" stroke-width="3" stroke-linecap="round"/><polyline points="335,474 270,486 210,482" fill="none" stroke="#ff9a3c" stroke-width="3" stroke-linecap="round"/><polyline points="335,474 410,486 480,484" fill="none" stroke="#ff9a3c" stroke-width="3" stroke-linecap="round"/>
+<rect x="250" y="440" width="170" height="34" rx="7" fill="#5b3b2a" stroke="#2e1c14" stroke-width="3"/>
+<g transform="rotate(32 330 380)"><rect x="320" y="190" width="20" height="165" rx="6" fill="#7a4a2a" stroke="#3a2214" stroke-width="3"/><rect x="245" y="348" width="170" height="64" rx="13" fill="url(#gd)" stroke="#6e4d14" stroke-width="3"/><rect x="266" y="348" width="14" height="64" fill="#8a6420"/><rect x="380" y="348" width="14" height="64" fill="#8a6420"/></g>
+<circle cx="250" cy="410" r="4" fill="#ffe28a"/><circle cx="420" cy="400" r="5" fill="#ffe28a"/><circle cx="290" cy="370" r="3" fill="#ffe28a"/><circle cx="380" cy="360" r="4" fill="#ffe28a"/><circle cx="455" cy="430" r="3" fill="#ffe28a"/><circle cx="215" cy="440" r="3" fill="#ffe28a"/>
+<rect x="262" y="30" width="436" height="104" rx="6" fill="#efdcae" stroke="#7a5a2a" stroke-width="3"/>
+<rect x="246" y="22" width="26" height="120" rx="11" fill="#b9925a" stroke="#7a5a2a" stroke-width="3"/><rect x="688" y="22" width="26" height="120" rx="11" fill="#b9925a" stroke="#7a5a2a" stroke-width="3"/>
+<text x="480" y="100" text-anchor="middle" font-family="Fraunces,Georgia,serif" font-size="56" font-weight="700" letter-spacing="4" fill="#7a1f1f">SANÇÃO</text>
+</svg>`;
+function sancImg(){return `<img class="reino" src="sancao.jpg" alt="Sanção aplicada" onerror="this.outerHTML=SANC"><p><b>⚖️ Sanção aplicada:</b> decisões ilegais ou antiéticas têm consequências.</p>`}
 function reinoImg(i){const k=i%4,n=ALL.filter(j=>j%4==k&&S.o[j]==1).length;return `<img class="reino" src="reino-${IMG[k]}.jpg" alt="Reino ${R[k][0]}"><p><b>${n==3?'🏰 Reino dominado: ':'Território conquistado em '}${R[k][0]}</b> (${n}/3 territórios)</p>`}
 function ans(i,q){const c=cs(i),h=i%4==S.k;let d=0,w=q>0,t='';
 if(q==2){S.e=Math.min(100,S.e+5);t='Decisão legal e ética: território conquistado! (+5 de ética)'}
@@ -108,17 +130,17 @@ else if(q==1){if(S.o[i]==2){d=1+rnd(6);w=d>=4}
 t=(w?'Decisão discutível: você conquistou o território, mas com custo.':'Decisão discutível e o dado não ajudou: o Rival segurou o território.')+(h?' Na sua região, o seu perfil não paga o custo de ética.':' (−8 de ética)');if(!h)S.e-=8}
 else{S.e-=20;t='Decisão ilegal ou antiética: sanção! (−20 de ética)';const m=own(1);if(m.length>1){const l=m[rnd(m.length)];S.o[l]=0;t+=` Você perdeu ${cs(l)[0]}.`}}
 S.e=Math.max(0,S.e);if(w)S.o[i]=1;S.tried.push(i);S.log.push([c[0],q]);
-$.innerHTML=hd()+`<div class="card"><h2>${c[0]}</h2><div class="res g${q}"><b>${t}</b>${d?`<br>🎲 Dado: ${d}`:''}</div>${w?reinoImg(i):''}<p>${c[3]}</p><button class="btn" onclick="rival()">Vez do Rival</button></div>`}
+$.innerHTML=hd()+`<div class="card"><h2>${c[0]}</h2><div class="res g${q}"><b>${t}</b>${d?`<br>🎲 Dado: ${d}`:''}</div>${w?reinoImg(i):q==0?sancImg():''}<p>${c[3]}</p><button class="btn" onclick="rival()">Vez do Rival</button></div>`}
 
-function rival(){let t='O Rival não tem território para atacar.';
+function rival(){let pun=0,t='O Rival não tem território para atacar.';
 const rs=ALL.filter(i=>S.o[i]!=2&&adj(i).some(j=>S.o[j]==2));
 if(rs.length){const i=rs[rnd(rs.length)],c=cs(i),r=Math.random(),q=r<.5?2:r<.75?1:0,x=c[2].find(z=>z[1]==q),v=S.o[i]==1;let w=q>0;
 t=`O Rival atacou <b>${c[0]}</b> e escolheu: “${x[0]}” `;
 if(q==1&&v){const d=1+rnd(6);w=d>=4;t+=`(dado do Rival: ${d}). `}
-if(q==0){t+='Foi decisão ilegal ou antiética: sanção! ';const m=own(2);if(m.length>1){const l=m[rnd(m.length)];S.o[l]=0;t+=`O Rival perdeu ${cs(l)[0]}. `}t+=c[3]}
+if(q==0){pun=1;t+='Foi decisão ilegal ou antiética: sanção! ';const m=own(2);if(m.length>1){const l=m[rnd(m.length)];S.o[l]=0;t+=`O Rival perdeu ${cs(l)[0]}. `}t+=c[3]}
 else if(w){S.o[i]=2;t+=v?'Ele tomou esse território de você!':'Ele conquistou o território.'}
 else t+='Mas não conseguiu conquistar.'}
-$.innerHTML=hd()+`<div class="card"><h2>Vez do Rival</h2><p>${t}</p><button class="btn" onclick="S.r++;board()">Próxima rodada</button></div>`}
+$.innerHTML=hd()+`<div class="card"><h2>Vez do Rival</h2><p>${t}</p>${pun?sancImg():''}<button class="btn" onclick="S.r++;board()">Próxima rodada</button></div>`}
 
 function end(){const p=cnt(1),r=cnt(2),ok=S.e>=50,L=['Ilegal ou antiética','Discutível','Legal e ética'];
 const h=p>r?(ok?'Vitória ética! 🏆':'Vitória vazia'):p==r?'Empate':'O Rival dominou o mapa';
