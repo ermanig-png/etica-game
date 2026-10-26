@@ -4,20 +4,20 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Ética/Play · Escolha seu jogo</title>
-<link rel="icon" type="image/png" href="logo-icone.png">
+<link rel="icon" type="image/png" href="logo-emblema.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Work+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--ink:#18202a;--mut:#5d6470;--a:#e4ebff;--ta:#1e3fa0;--b:#ffefd9;--tb:#a23e11;--c:#dff0e5;--tc:#14684a;--d:#dbf4ef;--td:#0b6670}
+:root{--ink:#18202a;--mut:#5b4d36;--a:#e4ebff;--ta:#1e3fa0;--b:#ffefd9;--tb:#a23e11;--c:#dff0e5;--tc:#14684a;--d:#dbf4ef;--td:#0b6670}
 *{box-sizing:border-box}
-body{margin:0;font-family:'Work Sans',system-ui,sans-serif;color:var(--ink);line-height:1.5;background:linear-gradient(135deg,#fff,#ebe5da);min-height:100vh}
+body{margin:0;font-family:'Work Sans',system-ui,sans-serif;color:var(--ink);line-height:1.5;background:#f1e4c6 url('fundo-pergaminho.jpg') center top/cover no-repeat fixed;min-height:100vh}
 main{max-width:1000px;margin:0 auto;padding:48px 16px 56px}
 h1,h2{font-family:Fraunces,Georgia,serif;line-height:1.1;margin:0}
 h1{font-size:clamp(2.2rem,6vw,3.6rem);max-width:14em}
 .brand{display:block;height:84px;width:auto;margin:0 0 28px}
 .lead{color:var(--mut);max-width:34em;margin:16px 0 32px;font-size:1.05rem}
 .games{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
-.game{background:#fffdf8;border:1px solid #d9d2c3;border-radius:24px;padding:24px;display:flex;flex-direction:column;gap:14px;text-decoration:none;color:inherit;transition:transform .2s,box-shadow .2s}
+.game{background:rgba(255,250,238,.88);border:1px solid #c9b27c;border-radius:24px;padding:24px;display:flex;flex-direction:column;gap:14px;text-decoration:none;color:inherit;transition:transform .2s,box-shadow .2s}
 .game:hover,.game:focus-visible{transform:translateY(-4px);box-shadow:0 14px 30px #0002;outline:none}
 .game h2{font-size:1.7rem}
 .game p{margin:0;color:var(--mut)}
@@ -27,11 +27,12 @@ h1{font-size:clamp(2.2rem,6vw,3.6rem);max-width:14em}
 .k0{background:var(--a);color:var(--ta)}.k1{background:var(--b);color:var(--tb)}.k2{background:var(--c);color:var(--tc)}.k3{background:var(--d);color:var(--td)}
 footer{margin-top:32px;color:var(--mut);font-size:.85rem;max-width:44em}
 @media(prefers-reduced-motion:reduce){.game{transition:none}}
+@media(max-width:700px){body{background-attachment:scroll}}
 </style>
 </head>
 <body>
 <main>
-<img class="brand" src="logo-horizontal.png" alt="Ética/Play">
+<img class="brand" src="logo-emblema.png" alt="Logo Ética/Play: bússola com folhas">
 <h1>Qual é a sua bússola nas mídias digitais?</h1>
 <p class="lead">Dois jogos sobre ética e legislação, feitos com os conteúdos da aula. Escolha um e descubra como você decide.</p>
 
